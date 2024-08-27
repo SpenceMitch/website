@@ -1,15 +1,104 @@
-<html>
-    <h1>
-        Hey, I'm Spencer Mitchell
-    </h1>
-    <body>
-        <h2>About me</h2>
-        <p>
-            I am making a website to house all my documentation!
-        </p>
-        <h2>What I'm working on</h2>
-        <p>
-            Lots of homelab projects
-        </p>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spencer Mitchell</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #2980b9, #2c3e50);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h2 {
+            font-size: 2rem;
+            margin: 20px 0;
+            text-align: center;
+        }
+        p {
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 0 20px;
+        }
+        .container {
+            max-width: 800px;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: slideUp 1s ease-in-out;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        .tab:hover, .tab.active {
+            border-color: #fff;
+        }
+        .content {
+            display: none;
+        }
+        .content.active {
+            display: block;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hey, I'm Spencer Mitchell</h1>
+        <div class="tabs">
+            <div class="tab active" onclick="showContent('about')">About Me</div>
+            <div class="tab" onclick="showContent('work')">What I'm Working On</div>
+        </div>
+        <div id="about" class="content active">
+            <h2>About Me</h2>
+            <p>I am making a website to house all my documentation!</p>
+        </div>
+        <div id="work" class="content">
+            <h2>What I'm Working On</h2>
+            <p>Lots of homelab projects</p>
+        </div>
+    </div>
+
+    <script>
+        function showContent(id) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            document.querySelector(`.tab[onclick="showContent('${id}')"]`).classList.add('active');
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
 </html>
+
